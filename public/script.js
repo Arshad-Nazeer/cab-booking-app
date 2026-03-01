@@ -156,3 +156,8 @@ async function completeRide(id) {
 
     getRides()
 }
+
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault()   // prevent page reload
+    login()
+})
