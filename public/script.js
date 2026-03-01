@@ -1,5 +1,5 @@
 // const API = "http://localhost:2500/api"
-const API = "https://cab-booking-app-7sii.onrender.com"
+const API = "https://cab-booking-app-7sii.onrender.com/api"
 
 // ================= REGISTER =================
 async function register() {
