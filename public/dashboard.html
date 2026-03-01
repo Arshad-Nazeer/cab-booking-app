@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🚗 Dashboard</h1>
+
+    <h2>Book Ride</h2>
+    <input id="pickup" placeholder="Pickup Location">
+    <input id="drop" placeholder="Drop Location">
+    <button onclick="bookRide()">Book Ride</button>
+
+    <h2>Your Rides</h2>
+    <button onclick="getRides()">Refresh Rides</button>
+
+    <div id="rides"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

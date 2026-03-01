@@ -1,0 +1,123 @@
+/* ========== GLOBAL RESET ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ========== MAIN CONTAINER ========== */
+.container {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 20px;
+    width: 400px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    color: white;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* ========== HEADINGS ========== */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+h2 {
+    margin: 20px 0 10px;
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* ========== INPUT FIELDS ========== */
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.03);
+}
+
+/* ========== BUTTONS ========== */
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    transition: 0.3s ease;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 114, 255, 0.4);
+}
+
+/* ========== RIDE CARD ========== */
+.ride-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 15px;
+    transition: 0.3s ease;
+}
+
+.ride-card:hover {
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.ride-card p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* ========== SMALL BUTTONS INSIDE CARD ========== */
+.ride-card button {
+    width: 48%;
+    margin: 5px 1%;
+    padding: 8px;
+    font-size: 12px;
+}
+
+/* ========== ANIMATION ========== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
