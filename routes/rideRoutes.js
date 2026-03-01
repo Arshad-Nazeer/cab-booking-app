@@ -7,19 +7,29 @@ const router = express.Router()
 // ==============================
 // 🚖 POST - Book Ride
 // ==============================
-router.post("/book", auth,async (req, res) => {
+router.post("/book", auth, async (req, res) => {
     try {
-        const { pickupLocation, dropLocation, user } = req.body
+        const { pickupLocation, dropLocation } = req.body
 
-        // 🔒 Validation
         if (!pickupLocation || !dropLocation) {
-            return res.status(400).json({ message: "Pickup and drop locations are required" })
+            return res.status(400).json({ message: "Pickup and drop required" })
         }
+
+        // Simulated distance (1–20 km)
+        const distance = Math.floor(Math.random() * 20) + 1
+
+        // Fare logic
+        const fare = distance * 15
+
+        // ETA logic (2 min per km)
+        const estimatedTime = distance * 2
 
         const ride = await Ride.create({
             pickupLocation,
             dropLocation,
-            user: req.user.id
+            user: req.user.id,
+            fare,
+            estimatedTime
         })
 
         res.status(201).json(ride)
@@ -28,6 +38,27 @@ router.post("/book", auth,async (req, res) => {
         res.status(500).json({ message: err.message })
     }
 })
+// router.post("/book", auth,async (req, res) => {
+//     try {
+//         const { pickupLocation, dropLocation, user } = req.body
+
+//         // 🔒 Validation
+//         if (!pickupLocation || !dropLocation) {
+//             return res.status(400).json({ message: "Pickup and drop locations are required" })
+//         }
+
+//         const ride = await Ride.create({
+//             pickupLocation,
+//             dropLocation,
+//             user: req.user.id
+//         })
+
+//         res.status(201).json(ride)
+
+//     } catch (err) {
+//         res.status(500).json({ message: err.message })
+//     }
+// })
 
 
 // ==============================
