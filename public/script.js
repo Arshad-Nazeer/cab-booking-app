@@ -161,3 +161,8 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault()   // prevent page reload
     login()
 })
+
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+    e.preventDefault()
+    register()
+})
