@@ -129,6 +129,8 @@ async function getRides() {
             <p><strong>From:</strong> ${ride.pickupLocation}</p>
             <p><strong>To:</strong> ${ride.dropLocation}</p>
             <p><strong>Status:</strong> ${ride.status}</p>
+            <p><strong>Fare:</strong> ₹${ride.fare}</p>
+            <p><strong>ETA:</strong> ${ride.estimatedTime} mins</p>
 
             <button onclick="deleteRide('${ride._id}')">Delete</button>
             <button onclick="completeRide('${ride._id}')">Complete</button>
