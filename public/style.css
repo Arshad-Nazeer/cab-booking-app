@@ -26,7 +26,7 @@ body::before {
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,198,255,0.4), transparent 70%);
+    background: radial-gradient(circle, rgba(0,198,255,0.35), transparent 70%);
     top: -150px;
     left: -150px;
     animation: float 8s ease-in-out infinite;
@@ -36,62 +36,22 @@ body::before {
 body::after {
     content: "";
     position: absolute;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,198,255,0.4), transparent 70%);
-    bottom: -150px;
-    right: -150px;
-    animation: float 8s ease-in-out infinite 4s;
-    z-index: 0;
-}
-
-/* ========== RANDOM GLOWING SQUARES ========== */
-
-/* Square Base */
-body::marker {} /* harmless trick to allow separation */
-
-.container::before,
-.container::after,
-h1::before,
-h1::after {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: #00c6ff;
     box-shadow:
-        0 0 10px #00c6ff,
-        0 0 20px #0072ff;
-    opacity: 0;
-    pointer-events: none;
+        10vw 20vh #00c6ff,
+        80vw 30vh #00c6ff,
+        25vw 75vh #00c6ff,
+        60vw 60vh #00c6ff,
+        40vw 10vh #00c6ff,
+        75vw 85vh #00c6ff,
+        15vw 50vh #00c6ff,
+        90vw 70vh #00c6ff;
+    animation: floatParticles 12s linear infinite;
+    opacity: 0.8;
     z-index: 0;
-}
-
-/* Square Positions + Animations */
-
-.container::before {
-    top: 15%;
-    left: 20%;
-    animation: floatSquare1 6s linear infinite;
-}
-
-.container::after {
-    top: 70%;
-    left: 80%;
-    animation: floatSquare2 7s linear infinite;
-}
-
-h1::before {
-    top: 10%;
-    left: 75%;
-    animation: floatSquare3 5s linear infinite;
-}
-
-h1::after {
-    top: 85%;
-    left: 25%;
-    animation: floatSquare4 8s linear infinite;
+    pointer-events: none;
 }
 
 /* ========== MAIN CONTAINER ========== */
@@ -115,7 +75,6 @@ h1::after {
 
 /* ========== HEADINGS ========== */
 h1 {
-    position: relative;
     text-align: center;
     margin-bottom: 25px;
     font-size: 30px;
@@ -247,23 +206,14 @@ button:hover {
     100% { transform: translateX(100%) rotate(45deg); }
 }
 
-/* Random Square Animations */
-@keyframes floatSquare1 {
-    0% { transform: translate(0,0); opacity:1; }
-    100% { transform: translate(150px,-200px); opacity:0; }
-}
-
-@keyframes floatSquare2 {
-    0% { transform: translate(0,0); opacity:1; }
-    100% { transform: translate(-200px,150px); opacity:0; }
-}
-
-@keyframes floatSquare3 {
-    0% { transform: translate(0,0); opacity:1; }
-    100% { transform: translate(180px,200px); opacity:0; }
-}
-
-@keyframes floatSquare4 {
-    0% { transform: translate(0,0); opacity:1; }
-    100% { transform: translate(-150px,-180px); opacity:0; }
+/* Floating particle animation */
+@keyframes floatParticles {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
 }
