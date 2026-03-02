@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-/* ========== BODY ========== */
+/* ========== ANIMATED BACKGROUND ========== */
 body {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(-45deg, #141e30, #243b55, #0f2027, #2c5364);
@@ -17,27 +17,36 @@ body {
     align-items: center;
     overflow: hidden;
     position: relative;
-    cursor: none; /* hide default cursor */
 }
 
-/* ========== CYBERPUNK CURSOR GLOW ========== */
-body::before {
+/* Floating Glow Circles */
+body::before,
+body::after {
     content: "";
-    position: fixed;
-    width: 300px;
-    height: 300px;
-    pointer-events: none;
-    background: radial-gradient(circle, rgba(0, 255, 255, 0.35), transparent 70%);
+    position: absolute;
+    width: 500px;
+    height: 500px;
     border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: 0.08s ease;
+    background: radial-gradient(circle, rgba(0,198,255,0.4), transparent 70%);
+    animation: float 8s ease-in-out infinite;
     z-index: 0;
+}
+
+body::before {
+    top: -150px;
+    left: -150px;
+}
+
+body::after {
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 4s;
 }
 
 /* ========== MAIN CONTAINER ========== */
 .container {
     position: relative;
-    z-index: 10; /* above glow */
+    z-index: 1;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(25px);
     padding: 45px;
@@ -111,6 +120,7 @@ button {
     overflow: hidden;
 }
 
+/* Glow pulse */
 button::after {
     content: "";
     position: absolute;
@@ -150,6 +160,7 @@ button:hover {
     font-size: 14px;
 }
 
+/* Small buttons inside card */
 .ride-card button {
     width: 48%;
     margin: 5px 1%;
@@ -162,6 +173,11 @@ button:hover {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(30px); }
 }
 
 @keyframes fadeInUp {

@@ -169,17 +169,3 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
     register()
 })
 
-const glow = document.querySelector("body::before");
-
-document.addEventListener("mousemove", e => {
-    document.body.style.setProperty("--x", e.clientX + "px");
-    document.body.style.setProperty("--y", e.clientY + "px");
-});
-
-document.addEventListener("mousemove", e => {
-    const glow = document.querySelector("body");
-    glow.style.setProperty("--cursorX", e.clientX + "px");
-    glow.style.setProperty("--cursorY", e.clientY + "px");
-
-    glow.style.backgroundPosition = `${e.clientX}px ${e.clientY}px`;
-});
