@@ -19,39 +19,28 @@ body {
     position: relative;
 }
 
-/* ========== FLOATING GLOW CIRCLES ========== */
-body::before {
+/* Floating Glow Circles */
+body::before,
+body::after {
     content: "";
     position: absolute;
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,198,255,0.35), transparent 70%);
-    top: -150px;
-    left: -150px;
+    background: radial-gradient(circle, rgba(0,198,255,0.4), transparent 70%);
     animation: float 8s ease-in-out infinite;
     z-index: 0;
 }
 
+body::before {
+    top: -150px;
+    left: -150px;
+}
+
 body::after {
-    content: "";
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: #00c6ff;
-    box-shadow:
-        10vw 20vh #00c6ff,
-        80vw 30vh #00c6ff,
-        25vw 75vh #00c6ff,
-        60vw 60vh #00c6ff,
-        40vw 10vh #00c6ff,
-        75vw 85vh #00c6ff,
-        15vw 50vh #00c6ff,
-        90vw 70vh #00c6ff;
-    animation: floatParticles 12s linear infinite;
-    opacity: 0.8;
-    z-index: 0;
-    pointer-events: none;
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 4s;
 }
 
 /* ========== MAIN CONTAINER ========== */
@@ -62,7 +51,7 @@ body::after {
     backdrop-filter: blur(25px);
     padding: 45px;
     border-radius: 25px;
-    width: min(90%, 420px);
+    width: 420px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
     color: white;
     animation: fadeInUp 1s ease;
@@ -131,6 +120,7 @@ button {
     overflow: hidden;
 }
 
+/* Glow pulse */
 button::after {
     content: "";
     position: absolute;
@@ -157,7 +147,6 @@ button:hover {
     transition: 0.3s ease;
     animation: fadeInCard 0.6s ease forwards;
     opacity: 0;
-    transform: translateY(20px);
 }
 
 .ride-card:hover {
@@ -171,6 +160,7 @@ button:hover {
     font-size: 14px;
 }
 
+/* Small buttons inside card */
 .ride-card button {
     width: 48%;
     margin: 5px 1%;
@@ -179,7 +169,6 @@ button:hover {
 }
 
 /* ========== ANIMATIONS ========== */
-
 @keyframes gradientFlow {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -204,16 +193,4 @@ button:hover {
     0% { transform: translateX(-100%) rotate(45deg); }
     50% { transform: translateX(100%) rotate(45deg); }
     100% { transform: translateX(100%) rotate(45deg); }
-}
-
-/* Floating particle animation */
-@keyframes floatParticles {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh);
-        opacity: 0;
-    }
 }
