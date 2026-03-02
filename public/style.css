@@ -5,33 +5,72 @@
     box-sizing: border-box;
 }
 
+/* ========== ANIMATED BACKGROUND ========== */
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #141e30, #243b55);
+    background: linear-gradient(-45deg, #141e30, #243b55, #0f2027, #2c5364);
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Floating Glow Circles */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,198,255,0.4), transparent 70%);
+    animation: float 8s ease-in-out infinite;
+    z-index: 0;
+}
+
+body::before {
+    top: -150px;
+    left: -150px;
+}
+
+body::after {
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 4s;
 }
 
 /* ========== MAIN CONTAINER ========== */
 .container {
+    position: relative;
+    z-index: 1;
     background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(20px);
-    padding: 40px;
-    border-radius: 20px;
-    width: 400px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(25px);
+    padding: 45px;
+    border-radius: 25px;
+    width: 420px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
     color: white;
-    animation: fadeIn 0.8s ease-in-out;
+    animation: fadeInUp 1s ease;
+    transition: 0.4s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
 }
 
 /* ========== HEADINGS ========== */
 h1 {
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 28px;
+    margin-bottom: 25px;
+    font-size: 30px;
     letter-spacing: 1px;
+    background: linear-gradient(90deg, #00c6ff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 h2 {
@@ -43,11 +82,11 @@ h2 {
 /* ========== INPUT FIELDS ========== */
 input {
     width: 100%;
-    padding: 12px;
-    border-radius: 10px;
+    padding: 14px;
+    border-radius: 12px;
     border: none;
     outline: none;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     background: rgba(255, 255, 255, 0.15);
     color: white;
     font-size: 14px;
@@ -60,14 +99,15 @@ input::placeholder {
 
 input:focus {
     background: rgba(255, 255, 255, 0.25);
-    transform: scale(1.03);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0,198,255,0.6);
 }
 
 /* ========== BUTTONS ========== */
 button {
     width: 100%;
-    padding: 12px;
-    border-radius: 10px;
+    padding: 14px;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
     font-size: 14px;
@@ -75,26 +115,44 @@ button {
     background: linear-gradient(135deg, #00c6ff, #0072ff);
     color: white;
     transition: 0.3s ease;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glow pulse */
+button::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: rgba(255,255,255,0.15);
+    top: -50%;
+    left: -50%;
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 114, 255, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 25px rgba(0, 114, 255, 0.5);
 }
 
 /* ========== RIDE CARD ========== */
 .ride-card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 15px;
-    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 18px;
+    border-radius: 18px;
+    margin-top: 18px;
     transition: 0.3s ease;
+    animation: fadeInCard 0.6s ease forwards;
+    opacity: 0;
 }
 
 .ride-card:hover {
-    transform: scale(1.02);
-    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.04);
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 }
 
 .ride-card p {
@@ -102,7 +160,7 @@ button:hover {
     font-size: 14px;
 }
 
-/* ========== SMALL BUTTONS INSIDE CARD ========== */
+/* Small buttons inside card */
 .ride-card button {
     width: 48%;
     margin: 5px 1%;
@@ -110,14 +168,29 @@ button:hover {
     font-size: 12px;
 }
 
-/* ========== ANIMATION ========== */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ========== ANIMATIONS ========== */
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(30px); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInCard {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    50% { transform: translateX(100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
 }

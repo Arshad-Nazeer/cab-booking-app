@@ -38,27 +38,7 @@ router.post("/book", auth, async (req, res) => {
         res.status(500).json({ message: err.message })
     }
 })
-// router.post("/book", auth,async (req, res) => {
-//     try {
-//         const { pickupLocation, dropLocation, user } = req.body
 
-//         // 🔒 Validation
-//         if (!pickupLocation || !dropLocation) {
-//             return res.status(400).json({ message: "Pickup and drop locations are required" })
-//         }
-
-//         const ride = await Ride.create({
-//             pickupLocation,
-//             dropLocation,
-//             user: req.user.id
-//         })
-
-//         res.status(201).json(ride)
-
-//     } catch (err) {
-//         res.status(500).json({ message: err.message })
-//     }
-// })
 
 
 // ==============================
